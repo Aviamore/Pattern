@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+# Задание. Установить компилятор и текстовый редактор. Реализовать и вызвать Hello World c комментарием.
 class Lab1_1
   print"Hello world\n" # Вот так можно выводить
 end
