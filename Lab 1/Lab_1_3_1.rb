@@ -15,7 +15,7 @@ def min_element(array)
   min
 end
 
-def first_positive_index(array)
+def f_pos_index(array)
   index = nil
   i = 0
   while i < array.length
@@ -33,9 +33,9 @@ def vibirai(num, file)
   mass = IO.read(file).split.map(&:to_i) 
   case num
     when "1"
-      return min_el(mass)
+      return min_element(mass)
     when "2"
-      return first_positive_index(mass)
+      return f_pos_index(mass)
   end
 end 
 
