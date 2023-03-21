@@ -29,7 +29,7 @@ def first_positive_index(array)
 end
 
 
-def vibor(num, file) 
+def vibirai(num, file) 
   mass = IO.read(file).split.map(&:to_i) 
   case num
     when "1"
@@ -39,4 +39,4 @@ def vibor(num, file)
   end
 end 
 
-puts vibor(ARGV[0], ARGV[1])
+puts vibirai(ARGV[0], ARGV[1])
