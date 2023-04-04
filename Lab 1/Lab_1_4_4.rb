@@ -1,3 +1,5 @@
+# 44 Дан массив чисел. Необходимо проверить, чередуются ли в нем целые и вещественные числа.
+
 def alternating_integers_and_floats?(arr)
   integers = arr.select { |n| n.is_a?(Integer) }
   floats = arr.select { |n| n.is_a?(Float) }
