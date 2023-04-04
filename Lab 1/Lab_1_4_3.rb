@@ -1,3 +1,5 @@
+#32 Дан целочисленный массив. Найти количество его локальных максимумов.
+
 def count_local_maximals(arr)
   arr.each_cons(3).count { |a, b, c| b > a && b > c }
 end
