@@ -1,3 +1,6 @@
+# 8 Дан целочисленный массив. Необходимо найти индексы двух наименьших элементов массива.
+
+наименьших элементов массива.
 def find_two_smallest_indexes(arr)
   smallest_index = arr.index(arr.min)
   arr.delete_at(smallest_index)
