@@ -1,80 +1,26 @@
 class Student
-
-  def initialize(id, last_name, first_name, father_name = nil, phone = nil, telegram = nil, email = nil, github = nil)
-    @id = id
-    @last_name = last_name
-    @first_name = first_name
-    @father_name = father_name
-    @phone = phone
-    @telegram = telegram
-    @email = email
-    @github = github
+  def self.valid_phone?(phone)
+    phone.match(/^\+?[78] ?[(-]?\d{3} ?[)-]?[ -]?\d{3}[ -]?\d{2}[ -]?\d{2}$/)
   end
 
-  def id
-    @id
+  attr_accessor :last_name, :first_name, :father_name, :id, :telegram, :email, :git
+  attr_reader :phone
+  
+  def initialize(last_name, first_name, father_name, options = {})
+   self.last_name = last_name
+   self.first_name = first_name
+   self.father_name = father_name
+   self.id = options[:id]
+   self.phone = options[:phone]
+   self.telegram = options[:telegram]
+   self.email = options[:email]
+   self.git = options[:git]
   end
 
-  def id=(value)
-    @id = value
-  end
+  def phone=(new_phone)
+    raise ArgumentError, "Invalid argument: phone=#{new_phone}" unless new_phone.nil? || Student.valid_phone?(new_phone)
 
-  def last_name
-    @last_name
-  end
-
-  def last_name=(value)
-    @last_name = value
-  end
-
-  def first_name
-    @first_name
-  end
-
-  def first_name=(value)
-    @first_name = value
-  end
-
-  def father_name
-    @father_name
-  end
-
-  def father_name=(value)
-    @father_name = value
-  end
-
-  def phone
-    @phone
-  end
-
-  def phone=(value)
-    @phone = value
-  end
-
-  def telegram
-    @telegram
-  end
-
-  def telegram=(value)
-    @telegram = value
-  end
-
-  def email
-    @email
-  end
-
-  def email=(value)
-    @email = value
-  end
-
-  def github
-    @github
-  end
-
-  def github=(value)
-    @github = value
-  end
-
+    @phone = new_phone
 
   def to_s
     "ID: #{@id}, Фамилия: #{@last_name}, Имя: #{@first_name}, Отчество: #{@father_name}, Телефон: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, Гит: #{@github}"
