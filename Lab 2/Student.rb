@@ -74,8 +74,9 @@ class Student
   def github=(value)
     @github = value
   end
-end
 
-def to_s
-  "ID: #{@id}, Фамилия: #{@last_name}, Имя: #{@first_name}, Отчество: #{@father_name}, Телефон: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, Гит: #{@github}"
+
+  def to_s
+    "ID: #{@id}, Фамилия: #{@last_name}, Имя: #{@first_name}, Отчество: #{@father_name}, Телефон: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, Гит: #{@github}"
+  end
 end
