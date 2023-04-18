@@ -69,7 +69,19 @@ class Student
     raise ArgumentError, "Invalid argument: phone=#{new_phone}" unless new_phone.nil? || Student.valid_phone?(new_phone)
 
     @phone = new_phone
+    
+ def valid_contacts?
+    !phone.nil? || !telegram.nil? || !email.nil?
+  end
 
+  def valid_github?
+    !github.nil?
+  end
+    
+    def valid?
+    valid_contacts? && valid_github?
+  end
+    
   def to_s
     "ID: #{@id}, Фамилия: #{@last_name}, Имя: #{@first_name}, Отчество: #{@father_name}, Телефон: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, Гит: #{@github}"
   end
