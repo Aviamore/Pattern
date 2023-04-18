@@ -3,7 +3,7 @@ class Student
     phone.match(/^\+?[78] ?[(-]?\d{3} ?[)-]?[ -]?\d{3}[ -]?\d{2}[ -]?\d{2}$/)
   end
 
-  attr_accessor :last_name, :first_name, :father_name, :id, :telegram, :email, :git
+  attr_accessor :last_name, :first_name, :father_name, :id, :telegram, :email, :github
   attr_reader :phone
   
   def initialize(last_name, first_name, father_name, options = {})
@@ -14,7 +14,7 @@ class Student
    self.phone = options[:phone]
    self.telegram = options[:telegram]
    self.email = options[:email]
-   self.git = options[:git]
+   self.github = options[:github]
   end
 
   def phone=(new_phone)
