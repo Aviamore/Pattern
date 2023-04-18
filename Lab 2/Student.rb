@@ -53,8 +53,8 @@ class Student
     @telegram = new_telegram
   end
 
-  def git=(new_git)
-    raise ArgumentError, "Invalid argument: git=#{new_git}" unless new_git.nil? || Student.valid_profile_name?(new_git)
+  def git=(new_github)
+    raise ArgumentError, "Invalid argument: github=#{new_github}" unless new_github.nil? || Student.valid_profile_name?(new_github)
 
     @git = new_git
   end
