@@ -18,25 +18,9 @@ class DataList
   end
 
   def data_table
-    result = []
-    counter = 0
-    objects.each do |obj|
-      row = []
-      row << counter
-      row.push(*table_fields(obj))
-      result << row
-      counter += 1
-    end
-    DataTable.new(result)
+    protected
+
+  def table_fields(obj)
+    [obj.github, obj.contact, obj.last_name_and_initials]
   end
-
-  protected
-
-  def table_fields(_obj)
-    []
-  end
-
-  private
-
-  attr_accessor :objects, :selected_num
 end
