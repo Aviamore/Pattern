@@ -13,14 +13,27 @@ class DataList
     objects[selected_num].id
   end
 
-  # Переопределить в наследниках
   def column_names
     []
   end
 
-  # Переопределить в наследниках
   def data_table
-    DataTable.new([])
+    result = []
+    counter = 0
+    objects.each do |obj|
+      row = []
+      row << counter
+      row.push(*table_fields(obj))
+      result << row
+      counter += 1
+    end
+    DataTable.new(result)
+  end
+
+  protected
+
+  def table_fields(_obj)
+    []
   end
 
   private
