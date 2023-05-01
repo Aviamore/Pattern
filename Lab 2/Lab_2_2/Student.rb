@@ -101,7 +101,7 @@ class Student
   end
 
   def get_info
-    "#{last_name_and_initials}, #{short_contact}, Git: #{git}"
+    "#{last_name_and_initials}, #{short_contact}, Git: #{github}"
   end
    
   def to_s
