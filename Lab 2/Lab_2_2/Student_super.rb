@@ -25,14 +25,14 @@ class StudentSuper
 
   public
 
-  attr_reader :id, :git
+  attr_reader :id, :github
 
   def initialize(options)
     self.id = options[:id]
     self.phone = options[:phone]
     self.telegram = options[:telegram]
     self.email = options[:email]
-    self.git = options[:git]
+    self.github = options[:github]
   end
 
   def short_contact
@@ -63,10 +63,10 @@ class StudentSuper
     @telegram = new_telegram
   end
 
-  def git=(new_git)
-    raise ArgumentError, "Invalid argument: git=#{new_git}" unless new_git.nil? || StudentSuper.valid_profile_name?(new_git)
+  def github=(new_github)
+    raise ArgumentError, "Invalid argument: github=#{new_github}" unless new_github.nil? || StudentSuper.valid_profile_name?(new_github)
 
-    @git = new_git
+    @github = new_github
   end
 
   def email=(new_email)
@@ -81,11 +81,11 @@ class StudentSuper
     !phone.nil? || !telegram.nil? || !email.nil?
   end
 
-  def has_git?
-    !git.nil?
+  def has_github?
+    !github.nil?
   end
 
   def valid?
-    has_contacts? && has_git?
+    has_contacts? && has_github?
   end
 end
