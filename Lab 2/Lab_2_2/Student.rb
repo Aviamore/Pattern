@@ -1,32 +1,15 @@
-class Student
-  def self.valid_phone?(phone)
-    phone.match(/^\+?[78] ?[(-]?\d{3} ?[)-]?[ -]?\d{3}[ -]?\d{2}[ -]?\d{2}$/)
-  end
-  
-  def self.valid_name?(name)
-    name.match(/(^[А-Я][а-я]+$)|(^[A-Z][a-z]+$)/)
-  end
-  
-  def self.valid_profile_name?(profile_name)
-    profile_name.match(/^[a-zA-Z0-9_.]+$/)
-  end
+require_relative 'student_super'
 
-  def self.valid_email?(email)
-    email.match(/^(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/)
-  end
+class Student < StudentSuper
   
-  attr_accessor :phone
-  attr_reader :last_name, :first_name, :father_name, :id, :telegram, :email, :github
+  public :phone, :telegram, :email, 'id=', 'phone=', 'telegram=', 'email=', 'github='
+  attr_reader :last_name, :first_name, :father_name
   
   def initialize(last_name, first_name, father_name, options = {})
    self.last_name = last_name
    self.first_name = first_name
    self.father_name = father_name
-   self.id = options[:id]
-   self.phone = options[:phone]
-   self.telegram = options[:telegram]
-   self.email = options[:email]
-   self.github = options[:github]
+   super(options)
   end
   
  def last_name=(new_last_name)
