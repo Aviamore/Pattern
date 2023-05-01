@@ -1,34 +1,29 @@
- attr_reader :obj_list, :selected_items
+class DataList
+  private_class_method :new
 
-  def initialize(obj_list)
-    self.obj_list = obj_list
-    self.selected_items = []
+  def initialize(objects)
+    self.objects = objects
   end
 
-  # выделение элементов по номеру
-  def select(*numbers)
-    selected_items.concat(numbers)
+  def select_element(number)
+    self.selected_num = number < objects.size ? number : nil
   end
 
-  # массив id выделенных элементов
-  def get_select
-    obj_list.values_at(*selected_items).map(&:id)
+  def selected_id
+    objects[selected_num].id
   end
 
-  def get_names; end
-
-  # получение таблицы
-  def get_data; end
-
-  protected
-
-  # obj_list геттер для доступа к списку объектов obj_list
-  # obj_list сеттер для установки списка объектов obj_list
-  attr_writer :obj_list
-  attr_accessor :selected_items
-
-  # Возвращает значения полей объекта object
-  def get_fields(object)
+  # Переопределить в наследниках
+  def column_names
     []
   end
+
+  # Переопределить в наследниках
+  def data_table
+    DataTable.new([])
+  end
+
+  private
+
+  attr_accessor :objects, :selected_num
 end
