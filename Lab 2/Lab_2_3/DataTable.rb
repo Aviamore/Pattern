@@ -22,8 +22,4 @@ class DataTable
     "DataTable (#{rows_count}x#{cols_count})"
   end
 
-  private
-
-  attr_accessor :table
-  attr_writer :rows_count, :cols_count
 end
