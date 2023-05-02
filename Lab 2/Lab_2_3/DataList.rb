@@ -16,20 +16,11 @@ class DataList
   end
   
   def get_names
-    []
+    raise NotImplementedError, 'get_names must be defined in subclass'
   end
   
   def get_data
-    result = []
-    counter = 0
-    objects.each do |obj|
-      row = []
-      row << counter
-      row.push(*table_fields(obj))
-      result << row
-      counter += 1
-    end
-    DataTable.new(result)
+    raise NotImplementedError, 'get_data must be defined in subclass'
   end
   
   protected
