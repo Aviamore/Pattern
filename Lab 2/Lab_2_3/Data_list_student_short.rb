@@ -2,12 +2,12 @@ require_relative 'data_list'
 
 class DataListStudentShort < DataList
   public_class_method :new
-
-  def column_names
+  
+  def get_names
     %w[github contact last_name_and_initials]
   end
-
-  def data_table
+  
+  def get_data
     result = []
     counter = 0
     objects.each do |obj|
