@@ -21,5 +21,4 @@ class DataTable
   def to_s
     "DataTable (#{rows_count}x#{cols_count})"
   end
-
 end
