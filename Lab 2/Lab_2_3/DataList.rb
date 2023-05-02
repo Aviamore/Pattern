@@ -11,15 +11,15 @@ class DataList
     self.selected_num = number < objects.size ? number : nil
   end
   
-  def selected_id
+  def get_select
     objects[selected_num].id
   end
   
-  def column_names
+  def get_names
     []
   end
   
-  def data_table
+  def get_data
     result = []
     counter = 0
     objects.each do |obj|
