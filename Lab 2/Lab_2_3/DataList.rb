@@ -28,10 +28,4 @@ class DataList
   def table_fields(_obj)
     []
   end
-
-  private
-
-  attr_reader :objects
-  attr_accessor :selected_num
-  
 end
