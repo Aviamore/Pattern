@@ -1,12 +1,12 @@
-require 'json'
-require 'yaml'
 require_relative 'student_short'
 require_relative 'data_list'
+require_relative 'serialization_strategy'
 
 class StudentsList
-  def initialize(file_path)
-    @file_path = file_path # (Путь к файлу)
+  def initialize(file_path, serialization_strategy)
+    @file_path = file_path # путь к файлу
     @students = []
+    @serialization_strategy = serialization_strategy
     load_from_file
   end
 
@@ -16,12 +16,8 @@ class StudentsList
 
   def save_to_file
     File.open(@file_path, 'w') do |file|
-      file.write(serialize_students)
+      file.write(@serialization_strategy.serialize(@students))
     end
-  end
-
-  def serialize_students
-    raise NotImplementedError, 'Метод serialize_students не реализован'
   end
 
   def get_student_by_id(id)
@@ -38,29 +34,19 @@ class StudentsList
   end
 
   def sort_by_last_name_and_initials
-    @students.sort_by!(&:last_name_and_initials)
+    @students.sort_by! { |student| [student.last_name, student.first_name, student.patronymic] }
   end
 
   def add_student(student)
-    student.id = @students.empty? ? 1 : @students.last.id + 1
     @students << student
   end
 
   def replace_student_by_id(id, new_student)
     index = @students.find_index { |student| student.id == id }
-    return unless index
-
-    @students[index] = new_student
+    @students[index] = new_student if index
   end
-
-  def delete_student_by_id(id)
-    index = @students.find_index { |student| student.id == id }
-    return unless index
-
-    @students.delete_at(index)
-  end
-
-  def get_student_short_count
-    @students.size
+  
+  def remove_student_by_id(id)
+    @students.reject! { |student| student.id == id }
   end
 end
