@@ -2,6 +2,7 @@ require 'json'
 require_relative 'student_short'
 require_relative 'data_list'
 
+class Students_list_JSON
   def initialize
     @file_path = 'C:\Users\Molen\Desktop\student.JSON'
     @students = []
@@ -60,3 +61,4 @@ require_relative 'data_list'
   def get_student_short_count
     @students.size
   end
+end
