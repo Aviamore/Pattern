@@ -22,6 +22,10 @@ class StudentsList
     end
   end
 
+  def get_student_short_count
+    StudentShort.new({ count: @students.count })
+  end
+  
   def get_student_by_id(id)
     @students.find { |student| student.id == id }
   end
