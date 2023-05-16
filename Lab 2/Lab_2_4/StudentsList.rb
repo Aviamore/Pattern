@@ -1,3 +1,5 @@
+require 'json'
+require 'yaml'
 require_relative 'student_short'
 require_relative 'data_list'
 require_relative 'serialization_strategy'
@@ -6,7 +8,7 @@ class StudentsList
   def initialize(file_path, serialization_strategy)
     @file_path = file_path # путь к файлу
     @students = []
-    @serialization_strategy = serialization_strategy
+    @serialization_format = serialization_format
     load_from_file
   end
 
@@ -16,7 +18,7 @@ class StudentsList
 
   def save_to_file
     File.open(@file_path, 'w') do |file|
-      file.write(@serialization_strategy.serialize(@students))
+      file.write(serialize(@students))
     end
   end
 
