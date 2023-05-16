@@ -5,7 +5,7 @@ require_relative 'data_list'
 
 class StudentsList
   def initialize(file_path)
-    @file_path = file_path
+    @file_path = file_path # (Путь к файлу)
     @students = []
     load_from_file
   end
