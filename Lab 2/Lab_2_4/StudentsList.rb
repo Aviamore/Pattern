@@ -49,4 +49,28 @@ class StudentsList
   def remove_student_by_id(id)
     @students.reject! { |student| student.id == id }
   end
+  
+   private
+
+  def serialize(students)
+    case @serialization_format
+    when :json
+      JSON.generate (students)
+    when :yaml
+      YAML.dump(students)
+    else
+      raise "Unsupported serialization format: #{@serialization_format}"
+    end
+  end
+
+  def deserialize(data)
+    case @serialization_format
+    when :json
+      JSON.parse(data).map { |student| StudentShort.new(student) }
+    when :yaml
+      YAML.safe_load(data).map { |student| StudentShort.new(student) }
+    else
+      raise "Unsupported serialization format: #{@serialization_format}"
+    end
+  end
 end
