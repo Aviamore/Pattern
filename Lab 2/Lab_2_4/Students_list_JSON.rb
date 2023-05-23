@@ -1,12 +1,13 @@
-class Students_list_JSON < StudentsList
-  def initialize(file_path)
-    super(file_path, JSONSerializationStrategy.new)
+require_relative 'student_list_strategy'
+require 'json'
+
+class StudentsListJSON < StudentListStrategy
+  public_class_method :new
+
+  def str_to_hash_list(str)
+    JSON.parse(str, { symbolize_names: true })
   end
-
-  def load_from_file
-    return unless File.exist?(@file_path)
-
-    file = File.read(@file_path)
-    @students = JSON.parse(file, object_class: StudentShort)
+  def hash_list_to_str(hash_list)
+    JSON.pretty_generate(hash_list)
   end
 end
