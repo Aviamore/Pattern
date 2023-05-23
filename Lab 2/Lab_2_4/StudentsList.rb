@@ -7,12 +7,18 @@ class StudentsList
     @students = []
   end
 
-  def read_students
-    @students = @strategy.read(@filename)
+   def read_students
+    file_data = @strategy.read(@filename)
+    @students = file_data.map do |student_data|
+      Student.new(student_data['id'], student_data['name'], student_data['surname'])
+    end
   end
 
   def write_students
-    @strategy.write(@filename, @students)
+    file_data = @students.map do |student|
+      { 'id' => student.id, 'name' => student.name, 'surname' => student.surname }
+    end
+    @strategy.write(@filename, file_data)
   end
 
   def get_student_by_id(id)
