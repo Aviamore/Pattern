@@ -1,7 +1,7 @@
 require_relative 'student_list_strategy'
 require 'json'
 
-class StudentListTxt<StudentListStrategy
+class StudentListTxt < StudentListStrategy
   public_class_method :new
 
   #получение массива хэшей из строки
@@ -30,4 +30,3 @@ class StudentListTxt<StudentListStrategy
       list_hash<<students_hash.transform_keys(&:to_sym)
     end
   end
-end
