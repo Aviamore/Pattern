@@ -1,7 +1,7 @@
 require_relative 'super_students_list'
 require 'yaml'
 
-class StudentsListYAML < SuperStudentsList
+class StudentsListYAML < StudentListStrategy
   public_class_method :new
 
   protected
