@@ -1,5 +1,5 @@
 require_relative 'student_list_strategy'
-require 'json'
+require 'txt'
 
 class StudentListTxt < StudentListStrategy
   public_class_method :new
