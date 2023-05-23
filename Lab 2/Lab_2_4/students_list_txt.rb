@@ -30,3 +30,4 @@ class StudentListTxt < StudentListStrategy
       list_hash<<students_hash.transform_keys(&:to_sym)
     end
   end
+end
