@@ -1,15 +1,5 @@
 require 'yaml'
 
-class Student
-  attr_accessor :id, :name, :surname
-
-  def initialize(id, name, surname)
-    @id = id
-    @name = name
-    @surname = surname
-  end
-end
-
 class Students_list_YAML
   attr_accessor :students
 
