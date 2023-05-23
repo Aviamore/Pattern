@@ -1,28 +1,18 @@
 class StudentsList
   attr_accessor :students
 
-  def initialize(filename)
+  def initialize(filename, strategy)
     @filename = filename
+    @strategy = strategy
     @students = []
   end
 
   def read_students
-    File.foreach(@filename) do |line|
-      student_data = line.strip.split(',')
-      id = student_data[0].to_i
-      name = student_data[1]
-      surname = student_data[2]
-      student = Student.new(id, name, surname)
-      @students << student
-    end
+    @students = @strategy.read(@filename)
   end
 
   def write_students
-    File.open(@filename, 'w') do |f|
-      @students.each do |student|
-        f.puts("#{student.id},#{student.name},#{student.surname}")
-      end
-    end
+    @strategy.write(@filename, @students)
   end
 
   def get_student_by_id(id)
