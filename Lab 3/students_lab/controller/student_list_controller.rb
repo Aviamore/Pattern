@@ -9,6 +9,8 @@ require_relative '../student_list_models/files_model/student_list_yaml'
 require_relative '../student_list_models/files_model/student_list_txt'
 require_relative 'add_student_controller'
 require_relative '../views/create_student_dialog'
+require_relative '../student_model/student'
+require_relative 'update_student_controller'
 
 require 'fox16'
 require 'win32api'
@@ -19,8 +21,8 @@ class StudentListController
     @data_list = DataListStudentShort.new([])
     @data_list.add_observer(@view)
     @student_list = StudentList.new(StudentListDbAdapter.new)
-    adapter_path = 'C:\Users\Molen\Desktop\Lab 3\students_lab\test_data\student_list.yaml'
-    #@student_list = StudentList.new(StudentListFileAdapter.new(StudentListYaml.new, adapter_path))
+    adapter_path = 'C:\Users\Molen\Desktop\Удаление\students_lab\test_data\student_list.yaml'
+    # @student_list = StudentList.new(StudentListFileAdapter.new(StudentListYaml.new, adapter_path))
   end
 
 
@@ -35,17 +37,38 @@ class StudentListController
     @view.update_count_students(@student_list.student_count)
   end
 
-  def show_add_dialog
-    add_controller = AddStudentController.new
-    add_view = CreateStudentDialog.new(@view, add_controller)
-    add_controller.add_view(add_view)
-    student = add_controller.execute
-    unless student.nil?
-      @student_list.add_student(student)
-      @view.refresh
-    end
-
+  #добавление студента
+  def student_add
+    controller = AddStudentController.new(@student_list)
+    show_dialog(controller)
   end
 
+  #изменение студента
+  def student_update(index)
+    @data_list.select(index)
+    id = @data_list.get_select
+    @data_list.clear_selected
 
+    controller = UpdateStudentController.new(@student_list, id)
+    show_dialog(controller)
+  end
+
+  def student_delete(indexes)
+    @data_list.select(*indexes)
+    id_list = @data_list.get_select
+    @data_list.clear_selected
+
+    id_list.each{|student_id| @student_list.remove_student(student_id)}
+    @view.refresh
+  end
+
+  private
+  #открытие модального окна
+  def show_dialog(controller)
+    view = CreateStudentDialog.new(@view, controller)
+    controller.add_view(view)
+    controller.execute
+
+    @view.refresh
+  end
 end
