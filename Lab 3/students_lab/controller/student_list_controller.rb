@@ -21,7 +21,7 @@ class StudentListController
     @data_list = DataListStudentShort.new([])
     @data_list.add_observer(@view)
     @student_list = StudentList.new(StudentListDbAdapter.new)
-    adapter_path = 'C:\Users\Molen\Desktop\Удаление\students_lab\test_data\student_list.yaml'
+    adapter_path = 'C:\Users\Molen\Desktop\Lab 3\students_lab\test_data\student_list.yaml'
     # @student_list = StudentList.new(StudentListFileAdapter.new(StudentListYaml.new, adapter_path))
   end
 
